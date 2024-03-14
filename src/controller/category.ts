@@ -37,3 +37,6 @@ export const getCategoryById: RequestHandler = async (req, res)=>{
     if(!category) return res.status(400).json({message: "Something went wrong!"});
     res.json({category});
 }
+
+
+
