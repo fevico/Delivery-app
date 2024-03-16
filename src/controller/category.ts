@@ -3,16 +3,16 @@ import { RequestHandler } from "express";
 
 
 export const createCategory: RequestHandler = async (req, res)=>{
-    const {name} = req.body;
-    const category = new Category({name});
+    const {name, kitchenId} = req.body;
+    const category = new Category({name, kitchenId});
     await category.save();
-    res.json({category});
+    res.json({category}); 
 }
 
 export const updateCategory: RequestHandler = async (req, res) =>{
-    const {catId} = req.params;
-    const {name} = req.body;
-    const category = await Category.findByIdAndUpdate(catId, {name});
+    const {catId} = req.params;           
+    const {name, kitchenId} = req.body;
+    const category = await Category.findByIdAndUpdate(catId, {name, kitchenId});
     if(!category) return res.status(400).json({message: "Category not found!"})
     await category.save();
     res.json({category});

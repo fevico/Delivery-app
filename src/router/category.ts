@@ -4,7 +4,7 @@ import { Router } from "express";
 const router = Router();
 
 router.post('/create', createCategory)
-router.patch('/update-category', updateCategory)
+router.patch('/:catId', updateCategory)
 router.delete('/delete-category', deleteCategory)
 router.get('/all-category', getAllcategory)
 router.get('/get-categoryById', getCategoryById)
