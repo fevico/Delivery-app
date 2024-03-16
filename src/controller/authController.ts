@@ -5,7 +5,7 @@ import User, { UserDocument } from '#/modules/users/schema';
 
 const JWT_SECRET = "thesecretfornow";
 
-export const register = async (req: Request, res: Response): Promise<void> => {
+export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, phone, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
