@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import Joi, { Schema } from 'joi';
+import { Schema } from 'joi';
 
 // Middleware function to validate request body
 const validatorMiddleware = (schema: Schema) => {
