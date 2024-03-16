@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User, { UserDocument } from '#/model/user';
+import User, { UserDocument } from '#/modules/users/schema';
 
 const JWT_SECRET = "thesecretfornow";
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { email, password } = req.body;
+    const { name, email, phone, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ email, password: hashedPassword });
+    const newUser = new User({ name, email, phone, password: hashedPassword });
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
     //generates accesstoken
