@@ -45,3 +45,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+//get all users
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find().sort({ _id: -1 });
+    res.status(200).send(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

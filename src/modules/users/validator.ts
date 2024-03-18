@@ -17,8 +17,8 @@ const userValidatorSchema = {
       'any.required': 'Phone number is required',
     }), //specifies a pattern that matches a string with exactly 11 digits. You can
     password: Joi.string().min(8).regex(strongPasswordRegex).required().label('Password').messages({
-      'string.min': 'Must have at least 8 characters',
-      'object.regex': 'Must have at least 8 characters',
+      'string.min': 'Password Must have at least 8 characters',
+      'object.regex': 'Password Must have at least 8 characters',
       'string.pattern.base': stringPassswordError,
     }),
   }),
@@ -26,8 +26,8 @@ const userValidatorSchema = {
   loginSchema: Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required().label('Password').messages({
-      'string.min': 'Must have at least 8 characters',
-      'object.regex': 'Must have at least 8 characters',
+      'string.min': 'Password Must have at least 8 characters',
+      'object.regex': 'Password Must have at least 8 characters',
       'string.pattern.base': stringPassswordError,
     }),
   }),
