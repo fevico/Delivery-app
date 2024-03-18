@@ -9,7 +9,13 @@ const userValidatorSchema = {
   signUpSchema: Joi.object({
     name: Joi.string().min(3).required(),
     email: Joi.string().email().required(),
-    phone: Joi.string().pattern(/^\d{11}$/).required(), //specifies a pattern that matches a string with exactly 11 digits. You can
+    phone: Joi.string()
+    .pattern(/^\d{11}$/)
+    .required()
+    .messages({
+      'string.pattern.base': 'Phone number must be exactly 11 digits long',
+      'any.required': 'Phone number is required',
+    }), //specifies a pattern that matches a string with exactly 11 digits. You can
     password: Joi.string().min(8).regex(strongPasswordRegex).required().label('Password').messages({
       'string.min': 'Must have at least 8 characters',
       'object.regex': 'Must have at least 8 characters',
@@ -19,7 +25,7 @@ const userValidatorSchema = {
 
   loginSchema: Joi.object({
     email: Joi.string().email().required(),
-    password: Joi.string().min(8).regex(strongPasswordRegex).required().label('Password').messages({
+    password: Joi.string().min(8).required().label('Password').messages({
       'string.min': 'Must have at least 8 characters',
       'object.regex': 'Must have at least 8 characters',
       'string.pattern.base': stringPassswordError,
