@@ -31,6 +31,13 @@ const userValidatorSchema = {
       'string.pattern.base': stringPassswordError,
     }),
   }),
+  // Define Joi schema for email validation
+  ForgotpasswordSchema: Joi.object({
+    email: Joi.string().email().required()}),
+  resetPasswordSchema: Joi.object({
+    newPassword: Joi.string().min(8).required(),
+    confirmPassword: Joi.string().valid(Joi.ref('newPassword')).required()
+  })
 };
 
 export default userValidatorSchema;
