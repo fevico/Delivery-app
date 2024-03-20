@@ -3,10 +3,6 @@ import 'dotenv/config'
 import './db'
 import productRouter from './router/product'
 import kitchenRouter from './router/kitchen'
-import "dotenv/config";
-
-import 'dotenv/config'
-import './db'
 import categoryRouter from './router/category'
 import authRoute from './router/authRoute'
 import cors from "cors";
