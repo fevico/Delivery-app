@@ -1,12 +1,16 @@
 import express from 'express'
 import 'dotenv/config'
 import './db'
-import categoryRouter from './router/category';
 import productRouter from './router/product'
 import kitchenRouter from './router/kitchen'
 import "dotenv/config";
-import "./db";
+
+import 'dotenv/config'
+import './db'
+import categoryRouter from './router/category'
+import authRoute from './router/authRoute'
 import cors from "cors";
+
 
 const app = express();
 app.use(
@@ -21,9 +25,13 @@ app.use(express.static("src/public"));
 
 
 app.use('/categories', categoryRouter);
+app.use('/api/auth', authRoute);
+
+app.use('/categories', categoryRouter);
 app.use('/products', productRouter);
 app.use('/kitchen', kitchenRouter);
 const PORT = 3002;
+
 
 app.listen(PORT, () => {
   console.log("Port is listening " + PORT);
