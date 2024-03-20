@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User, { UserDocument } from '#/modules/users/schema';
+import  { UserDocument, User } from '#/modules/users/schema';
 import { sendResetEmail } from '#/utils/mailer';
 import { generateResetToken } from '#/utils/genToken';
 import { addMinutes } from 'date-fns';
@@ -10,14 +10,15 @@ const JWT_SECRET = "thesecretfornow";
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { name, email, phone, password } = req.body;
+    const { name, email, phone, password,  role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, phone, password: hashedPassword });
+    const newUser = new User({ name, email, phone, password: hashedPassword, role });
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
     //generates accesstoken
     // const AccessToken = jwt.sign({ email: email }, JWT_SECRET,   { expiresIn: '1h' });
     // res.json({ AccessToken });
+  
   } catch (error) {
     console.error('Error registering user:', error);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -40,7 +41,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       res.status(401).json({ message: 'Invalid email or password' });
       return;
     }
-    const AccessToken = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+    const AccessToken = jwt.sign({ email: user.email, userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
     res.json({ AccessToken });
     
   } catch (error) {

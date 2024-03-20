@@ -21,4 +21,6 @@ const ValidatorMiddleware = (schema: Schema, property: RequestKeys) => {
     }
   };
 };
-export default ValidatorMiddleware;
+
+
+ export default ValidatorMiddleware;
