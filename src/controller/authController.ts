@@ -8,7 +8,7 @@ import { addMinutes } from "date-fns";
 
 const JWT_SECRET = "thesecretfornow";
 
-export const signUp = async (req: Request, res: Response): Promise<void> => {
+export const signUp = async (req: Request, res: Response): Promise<void> => { 
   try {
     const { name, email, phone, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
