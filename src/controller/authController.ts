@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import  { UserDocument, User } from '#/modules/users/schema';
 import { sendResetEmail } from '#/utils/mailer';
-import { generateResetToken } from '#/utils/genToken';
+import { generateAuthToken, generateResetToken } from '#/utils/genToken';
 import { addMinutes } from 'date-fns';
 
 const JWT_SECRET = "thesecretfornow";
@@ -15,9 +14,7 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     const newUser = new User({ name, email, phone, password: hashedPassword, role });
     await newUser.save();
     res.status(201).json({ message: 'User registered successfully' });
-    //generates accesstoken
-    // const AccessToken = jwt.sign({ email: email }, JWT_SECRET,   { expiresIn: '1h' });
-    // res.json({ AccessToken });
+   
   
   } catch (error) {
     console.error('Error registering user:', error);
@@ -41,7 +38,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       res.status(401).json({ message: 'Invalid email or password' });
       return;
     }
-    const AccessToken = jwt.sign({ email: user.email, userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
+    const AccessToken = generateAuthToken(user)
     res.json({ AccessToken });
     
   } catch (error) {

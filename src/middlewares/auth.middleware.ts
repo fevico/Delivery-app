@@ -31,7 +31,7 @@ export const authMiddleware = async (req: AuthenticatedRequest, res: Response, n
 };
 
 // Middleware to restrict access based on user role
-export const roleMiddleware = (roles: string[]) => {
+export const checkRole = (roles: string[]) => {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     const userRole = req.user?.role;
     if (!userRole || !roles.includes(userRole)) {

@@ -2,7 +2,7 @@
 import express from 'express'
 import 'dotenv/config'
 import './db'
-import authRoute from './router/authRoute'
+import authRoute from './router/authRoutes'
 import categoryRouter from "./router/category";
 import cors from "cors";
 
