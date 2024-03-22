@@ -101,7 +101,8 @@ export const kitchenSignIn: RequestHandler = async (req, res) => {
     // Generate JWT token
     // const token = jwt.sign({ kitchenId: kitchen._id, name: kitchen.name }, process.env.JWT_SECRET) as JwtPayload;
     const token = jwt.sign(
-      { kitchenId: kitchen._id, name: kitchen.name },
+      { kitchenId: kitchen._id, name: kitchen.name, email: kitchen.email, description: kitchen.description, image: kitchen.image,
+    status: kitchen.status, startTime: kitchen.startTime, endTime: kitchen.endTime, tags: kitchen.tags },
       "secret"
     ) as JwtPayload;
 
