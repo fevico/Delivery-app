@@ -1,10 +1,16 @@
 import express from 'express'
 import 'dotenv/config'
 import './db'
+<<<<<<< Updated upstream
 import productRouter from './router/product'
 import kitchenRouter from './router/kitchen'
 import categoryRouter from './router/category'
 import authRoute from './router/authRoute'
+=======
+import authRoute from './router/authRoutes'
+import categoryRouter from "./router/category";
+import kitchenRoute from "./router/kitchen";
+>>>>>>> Stashed changes
 import cors from "cors";
 
 
@@ -22,6 +28,7 @@ app.use(express.static("src/public"));
 
 app.use('/categories', categoryRouter);
 app.use('/api/auth', authRoute);
+app.use('/kitchen', kitchenRoute);
 
 app.use('/categories', categoryRouter);
 app.use('/products', productRouter);

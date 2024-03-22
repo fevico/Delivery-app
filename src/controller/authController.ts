@@ -50,7 +50,14 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+<<<<<<< Updated upstream
 export const resetPassword = async (req: Request, res: Response) => {
+=======
+
+
+
+export const resetPassword = async (req: Request, res: Response)=>{
+>>>>>>> Stashed changes
   try {
     const { token } = req.params;
     const { newPassword } = req.body;
@@ -89,8 +96,14 @@ export const forgotPassword = async (req: Request, res: Response) => {
     await user.save();
     try {
       await sendResetEmail(email, passwordResetToken);
+<<<<<<< Updated upstream
       res.json({ message: "Password reset email sent" });
       console.log("Password reset mail sent");
+=======
+      res.json({ message: 'Password reset email sent' });
+      // console.log('Password reset mail sent');
+  
+>>>>>>> Stashed changes
     } catch (error) {
       console.error("Error sending email:", error);
       return res.status(500).json({ message: "Error sending email" });
