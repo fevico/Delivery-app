@@ -115,3 +115,20 @@ export const kitchenSignIn: RequestHandler = async (req, res) => {
     res.status(500).json({ message: "An error occurred while signing in" });
   }
 };
+
+// export const addProductToKitchen = async (req: Request, res: Response) =>{
+//     const {productId} = req.body;
+// }
+
+export const approveKitchen: RequestHandler = async (req, res) => {
+    const {kitchenId} = req.body;
+    const kitchen = await Kitchen.findById(kitchenId);
+    if(!kitchen) return res.status(400).json({message: "Something went wrong!"});
+    if(kitchen.status === "pending"){
+        kitchen.status = "active"
+        await kitchen.save();
+    }else{
+        return res.status(400).json({message: "Kitchen already active!"})
+    }
+    res.json({message: true});
+}
