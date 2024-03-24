@@ -18,7 +18,7 @@ export const addProduct: RequestHandler = async (req: createProduct, res) => {
                     categoryId,
                     price,
                     description,
-                    image: uploadedImage,
+                    image: uploadedImage.secure_url,
                     kitchenId
                 })
                 await product.save()
