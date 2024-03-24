@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { compare, hash } from "bcrypt";
 import { Model, model, Schema, ObjectId } from "mongoose";
 

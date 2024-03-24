@@ -1,5 +1,4 @@
-import mongoose, { Date, Document, Schema } from 'mongoose';
-
+import mongoose, { Date, Document, Schema } from "mongoose";
 
 export interface UserDocument extends Document {
     name: string;

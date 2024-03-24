@@ -38,7 +38,9 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       res.status(401).json({ message: 'Invalid email or password' });
       return;
     }
+
     const AccessToken = generateAuthToken(user)
+
     res.json({ AccessToken });
     
   } catch (error) {
