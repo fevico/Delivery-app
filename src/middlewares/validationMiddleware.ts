@@ -15,7 +15,7 @@ const ValidatorMiddleware = (schema: Schema, property: RequestKeys) => {
       next();
     } else {
       const { details } = error;
-      const message =
+      const message = 
         details && Array.isArray(details) ? details.map((i: any) => i.message).join(',') : details;
         return res.status(400).json({ error: message });
     }

@@ -5,6 +5,7 @@ import authRoute from "./router/authRoute";
 import categoryRouter from "./router/category";
 import kitchenRouter from "./router/kitchen";
 import productRouter from "./router/product";
+import riderRouter from "./router/rider";
 import cors from "cors";
 
 const app = express();
@@ -20,9 +21,9 @@ app.use(express.static("src/public"));
 
 app.use("/categories", categoryRouter);
 app.use("/api/auth", authRoute);
-app.use("/categories", categoryRouter);
 app.use("/products", productRouter);
 app.use("/kitchen", kitchenRouter);
+app.use("/rider", riderRouter);
 
 
 const PORT = 3002;
