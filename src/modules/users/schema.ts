@@ -4,7 +4,6 @@ export interface UserDocument extends Document {
     name: string;
     email: string;
     role: UserRole;
-    isAdmin: boolean,
     phone: number;
     password: string;
     passwordResetToken?: string | undefined;
