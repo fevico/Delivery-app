@@ -1,3 +1,4 @@
+
 import express from "express";
 import "dotenv/config";
 import "./db";
@@ -5,6 +6,7 @@ import authRoute from "./router/authRoute";
 import categoryRouter from "./router/category";
 import kitchenRouter from "./router/kitchen";
 import productRouter from "./router/product";
+
 import cors from "cors";
 
 const app = express();
