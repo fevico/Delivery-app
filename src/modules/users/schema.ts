@@ -21,15 +21,11 @@ const UserSchema: Schema = new Schema({
     name: {  type: String, required: true },
     email: { type: String, required: true, unique: true },
     role: { type: String, enum: Object.values(UserRole), default: 'user' },
-    isAdmin: {
-        type: Boolean,
-        default: false,
-      },
     phone: { type: Number, required: true, unique: true },
     password: { type: String, required: true },
     passwordResetToken: { type: String },
     passwordResetExpires: { type: Date,  default: undefined }
-});
+}, { timestamps: true });
 
 
 const User = mongoose.model<UserDocument>('User', UserSchema);

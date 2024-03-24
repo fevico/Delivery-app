@@ -1,5 +1,5 @@
 import Category from "#/model/category";
-import Kitechen from "#/model/kitechen";
+import Kitechen from "#/model/kitchen";
 import { RequestHandler } from "express";
 
 

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { RequestHandler } from "express";
-import Kitchen from "#/model/kitechen";
+import Kitchen from "#/model/kitchen";
 import { isValidObjectId } from "mongoose";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
