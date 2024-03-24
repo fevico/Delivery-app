@@ -14,7 +14,7 @@ export function generateResetToken(length: number): string {
        email: user.email, 
        userId: user._id, 
        role: user.role,  
-       isAdmin: user.isAdmin }, 
+       }, 
        JWT_SECRET, 
        { expiresIn: '1h' });
   
