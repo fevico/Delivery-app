@@ -5,11 +5,18 @@ import { sendResetEmail } from '#/utils/mailer';
 import { generateAuthToken, generateResetToken } from '#/utils/genToken';
 import { addMinutes } from 'date-fns';
 
-const JWT_SECRET = "thesecretfornow";
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, phone, password,  role } = req.body;
+    const user = await User.findOne(
+      { email }
+    );
+    if (user) {
+      res.status(400).json({ message: "user with this email already exists!" });
+      return
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, phone, password: hashedPassword, role });
     await newUser.save();
