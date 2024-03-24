@@ -8,22 +8,24 @@ interface kitchenDocument {
     password: string;
     name: string;
     image: string;
+    products: Types.Array<ProductDocument>; // Reference to the Product schema
     description: string;
     startTime: string;
     endTime: string;
     status: "pending" | "active" | "inactive";
     tags: [string]
+
 }
 
 interface UserMethods {
     comparePassword(password: string): Promise<boolean>;
-  }
-  const kitchenSchema = new Schema<kitchenDocument, UserMethods>({
+}
+const kitchenSchema = new Schema<kitchenDocument, UserMethods>({
     name: {
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
         unique: true,
     },
@@ -31,7 +33,7 @@ interface UserMethods {
         type: String,
         required: true,
     },
-    image:{
+    image: {
         type: String,
         required: true,
     },
@@ -47,7 +49,11 @@ interface UserMethods {
         type: String,
         required: true,
     },
-    status:{
+    products: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    }], // Reference to the Product schema
+    status: {
         type: String,
         default: "pending"
     },
@@ -62,14 +68,14 @@ interface UserMethods {
 kitchenSchema.pre('save', async function (next) {
     // Hash the password
     if (this.isModified("password")) {
-      this.password = await hash(this.password, 10); 
+        this.password = await hash(this.password, 10);
     }
     next();
-  });
-  
-  kitchenSchema.methods.comparePassword = async function (password) {
+});
+
+kitchenSchema.methods.comparePassword = async function (password) {
     const result = await compare(password, this.password);
     return result;
-  };
+};
 
 export default model("Kitchen", kitchenSchema) as Model<kitchenDocument, {}, UserMethods>
