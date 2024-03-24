@@ -17,8 +17,8 @@ export const riderSignIn: RequestHandler = async (req, res) => {
     if(!rider) return res.status(400).json({message: "Email/Paswword mismtach!"})
     const matched = rider.comparePassword(password);
     if(!matched) return res.status(400).json({message: "Email/Password mismatch!"});
-    const token = jwt.sign({riderId: rider._id, name: rider.name, email: rider.email, phone: rider.phone, licenseNumber: rider.licenseNumber }, 'secret') as JwtPayload;
-    const decoded = jwt.decode(token) as JwtPayload;
+    const token = jwt.sign({riderId: rider._id, name: rider.name, email: rider.email, phone: rider.phone, licenseNumber: rider.licenseNumber }, 'secret');
+    const decoded = jwt.decode(token);
     console.log(decoded);
     res.json({token})
 }
