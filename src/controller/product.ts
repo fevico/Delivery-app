@@ -48,7 +48,7 @@ export const allProduct: RequestHandler = async (req, res) => {
 export const getProductById: RequestHandler = async (req, res) => {
     const productId = req.params;
     const product = await Product.findOne(productId)
-    if (!product) return res.status(400).json({ message: "Cannot get products!" });
+    if (!product) return res.status(400).json({ message: "Cannot get product!" });
     return res.json({ product })
 }
 
