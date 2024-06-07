@@ -70,7 +70,7 @@ riderSchema.pre('save', async function (next) {
     next();
 });
 
-riderSchema.methods.comparePassword = async function (password)  {
+riderSchema.methods.comparePassword = async function (password: string)  {
     const result = await compare(password, this.password);
     return result;
 };
